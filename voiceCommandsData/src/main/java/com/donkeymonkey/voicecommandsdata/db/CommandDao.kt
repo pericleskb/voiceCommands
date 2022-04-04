@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.donkeymonkey.voicecommandsdomain.entities.Command
+import com.donkeymonkey.voicecommandsdata.entities.Command
 
 @Dao
 interface CommandDao {

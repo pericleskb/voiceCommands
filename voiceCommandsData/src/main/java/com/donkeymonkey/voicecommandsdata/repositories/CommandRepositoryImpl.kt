@@ -1,11 +1,19 @@
 package com.donkeymonkey.voicecommandsdata.repositories
 
 import androidx.lifecycle.LiveData
-import com.donkeymonkey.voicecommandsdata.dataSources.local.LocalDataSource
+import com.donkeymonkey.voicecommandsdata.db.CommandDao
 import com.donkeymonkey.voicecommandsdata.entities.Command
 
-class CommandRepositoryImpl(private val localDataSource: LocalDataSource): CommandRepository {
+class CommandRepositoryImpl(private val commandDao: CommandDao): CommandRepository {
     override suspend fun getCommands(): LiveData<List<Command>> {
-        return localDataSource.getCommands()
+        return commandDao.getAll()
+    }
+
+    override suspend fun addCommand(command: Command) {
+        commandDao.insert(command)
+    }
+
+    override suspend fun deleteCommand(command: Command) {
+        commandDao.delete(command)
     }
 }
