@@ -20,11 +20,7 @@ class MainActivity : AppCompatActivity() {
         binding.testButton.setOnClickListener {
             viewModel.addCommand()
         }
-        viewModel.getButtons().observe(this) {
-            println("@@@")
-        }
         setContentView(binding.root)
-
     }
 
 
