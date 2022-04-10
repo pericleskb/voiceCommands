@@ -13,12 +13,14 @@ class CommandsRecyclerViewAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private val commandsList: ArrayList<Command> = ArrayList()
 
-    private val ADD_BUTTON_TYPE = 0;
-    private val COMMAND_TYPE = 1;
+    private val addButtonType = 0;
+    private val commandType = 1;
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommandViewHolder {
-        if (viewType == ADD_BUTTON_TYPE) {
-            return
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        if (viewType == addButtonType) {
+            return AddButtonViewHolder(
+                LayoutInflater.from(parent.context).inflate(R.layout.layout_add_command_button, parent, false)
+            )
         }
         return CommandViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.layout_command_square, parent, false)
@@ -42,9 +44,9 @@ class CommandsRecyclerViewAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolde
 
     override fun getItemViewType(position: Int): Int {
         return if (commandsList.isEmpty() || position == commandsList.size) {
-            ADD_BUTTON_TYPE
+            addButtonType
         } else {
-            COMMAND_TYPE
+            commandType
         }
     }
 

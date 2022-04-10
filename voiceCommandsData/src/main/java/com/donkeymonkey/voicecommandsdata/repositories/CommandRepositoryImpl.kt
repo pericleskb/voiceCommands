@@ -5,7 +5,7 @@ import com.donkeymonkey.voicecommandsdata.db.CommandDao
 import com.donkeymonkey.voicecommandsdata.entities.Command
 
 class CommandRepositoryImpl(private val commandDao: CommandDao): CommandRepository {
-    override suspend fun getCommands(): LiveData<List<Command>> {
+    override fun getCommands(): LiveData<List<Command>> {
         return commandDao.getAll()
     }
 

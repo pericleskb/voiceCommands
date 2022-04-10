@@ -10,5 +10,5 @@ data class Command(
     val color: String, //can this be HEX?
     val voiceCommand: String, //URI
     val image: String,
-    val positions: Int
+    val position: Int
 )

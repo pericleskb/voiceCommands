@@ -1,28 +1,32 @@
 package com.donkeymonkey.voiceCommands
 
-import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.donkeymonkey.voicecommandsdata.db.VoiceCommandsDatabase
+import androidx.lifecycle.*
+import com.donkeymonkey.voiceCommands.extensions.notifyObserver
 import com.donkeymonkey.voicecommandsdata.entities.Command
 import com.donkeymonkey.voicecommandsdata.repositories.CommandRepositoryImpl
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class MainViewModel(context: Context): ViewModel() {
-    private val commandsRepository = CommandRepositoryImpl(
-        VoiceCommandsDatabase.getDatabase(context).commandDao()
-    )
-    private val buttons: MutableLiveData<List<Command>> by lazy {
-        MutableLiveData<List<Command>>().also {
-            loadButtons()
-        }
-    }
-
-    private suspend fun loadButtons() {
-        buttons.postValue(commandsRepository.getCommands().value)
-    }
+class MainViewModel(private val commandsRepository: CommandRepositoryImpl): ViewModel() {
+    private val buttons: LiveData<List<Command>> = commandsRepository.getCommands()
 
     fun getButtons(): LiveData<List<Command>> {
         return buttons
+    }
+
+    fun addCommand() {
+        viewModelScope.launch(Dispatchers.IO) {
+            commandsRepository.addCommand(Command("aaabb", "FFAAFF", "test", "some uri", 1))
+        }
+    }
+}
+
+class MainViewModelFactory(private val commandsRepository: CommandRepositoryImpl): ViewModelProvider.Factory {
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return MainViewModel(commandsRepository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

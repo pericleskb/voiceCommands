@@ -8,14 +8,21 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.donkeymonkey.voiceCommands.MainViewModel
+import com.donkeymonkey.voiceCommands.MainViewModelFactory
 import com.donkeymonkey.voiceCommands.databinding.FragmentCommandsBinding
+import com.donkeymonkey.voicecommandsdata.db.VoiceCommandsDatabase
+import com.donkeymonkey.voicecommandsdata.repositories.CommandRepositoryImpl
 
 class CommandsFragment: Fragment() {
 
     private var _binding: FragmentCommandsBinding? = null
     private val binding get() = _binding!!
 
-    private val model: MainViewModel by activityViewModels()
+    private val mainViewModel: MainViewModel by activityViewModels {
+        MainViewModelFactory(
+            CommandRepositoryImpl(VoiceCommandsDatabase.getDatabase(requireActivity().baseContext).commandDao())
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +36,7 @@ class CommandsFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val adapter = CommandsRecyclerViewAdapter()
-        model.getButtons().observe(viewLifecycleOwner) { list ->
+        mainViewModel.getButtons().observe(viewLifecycleOwner) { list ->
             adapter.setButtons(list)
         }
         binding.commandsRecyclerView.adapter = adapter
