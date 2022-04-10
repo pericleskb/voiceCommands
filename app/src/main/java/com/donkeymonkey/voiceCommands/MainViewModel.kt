@@ -1,7 +1,6 @@
 package com.donkeymonkey.voiceCommands
 
 import androidx.lifecycle.*
-import com.donkeymonkey.voiceCommands.extensions.notifyObserver
 import com.donkeymonkey.voicecommandsdata.entities.Command
 import com.donkeymonkey.voicecommandsdata.repositories.CommandRepositoryImpl
 import kotlinx.coroutines.Dispatchers

@@ -17,9 +17,6 @@ class MainActivity : AppCompatActivity() {
             )
         }
         val binding = ActivityMainBinding.inflate(layoutInflater, null, false)
-        binding.testButton.setOnClickListener {
-            viewModel.addCommand()
-        }
         setContentView(binding.root)
     }
 
