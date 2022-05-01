@@ -1,4 +1,4 @@
-package com.donkeymonkey.voiceCommands
+package com.donkeymonkey.voiceCommands.view
 
 import androidx.lifecycle.*
 import com.donkeymonkey.voicecommandsdata.entities.Command
@@ -15,7 +15,7 @@ class MainViewModel(private val commandsRepository: CommandRepositoryImpl): View
 
     fun addCommand() {
         viewModelScope.launch(Dispatchers.IO) {
-            commandsRepository.addCommand(Command("aaabb", "FFAAFF", "test", "some uri", 1))
+            commandsRepository.addCommand(Command("test", "FFAAFF", "test", "some uri", 1))
         }
     }
 }

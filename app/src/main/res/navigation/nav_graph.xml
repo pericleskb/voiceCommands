@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/commandsFragment"
-        android:name="com.donkeymonkey.voiceCommands.commandsFragment.CommandsFragment"
+        android:name="com.donkeymonkey.voiceCommands.view.commandsFragment.CommandsFragment"
         android:label="CommandsFragment" />
 </navigation>

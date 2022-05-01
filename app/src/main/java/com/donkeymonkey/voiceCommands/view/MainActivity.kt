@@ -1,4 +1,4 @@
-package com.donkeymonkey.voiceCommands
+package com.donkeymonkey.voiceCommands.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,6 +19,4 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater, null, false)
         setContentView(binding.root)
     }
-
-
 }
