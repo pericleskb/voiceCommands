@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.donkeymonkey.voiceCommands.databinding.ActivityMainBinding
-import com.donkeymonkey.voicecommandsdata.db.VoiceCommandsDatabase
+import com.donkeymonkey.voiceCommands.hardcodedCommands.CommandGeneratorImpl
 import com.donkeymonkey.voicecommandsdata.repositories.CommandRepositoryImpl
 
 class MainActivity : AppCompatActivity() {
@@ -13,7 +13,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val viewModel: MainViewModel by viewModels {
             MainViewModelFactory(
-                CommandRepositoryImpl(VoiceCommandsDatabase.getDatabase(baseContext).commandDao())
+                baseContext,
+                CommandRepositoryImpl(CommandGeneratorImpl())
             )
         }
         val binding = ActivityMainBinding.inflate(layoutInflater, null, false)
