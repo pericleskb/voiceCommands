@@ -3,9 +3,10 @@
     package="com.donkeymonkey.voiceCommands">
 
     <application
+        android:label="@string/app_name"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@mipmap/eimai"
+        android:roundIcon="@mipmap/eimai"
         android:supportsRtl="true"
         android:theme="@style/Theme.VoiceCommands">
         <activity
