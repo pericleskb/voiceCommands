@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/commandsFragment">
 
     <fragment
         android:id="@+id/commandsFragment"
         android:name="com.donkeymonkey.voiceCommands.view.commandsFragment.CommandsFragment"
-        android:label="CommandsFragment" />
+        android:label="CommandsFragment"
+        tools:layout="@layout/fragment_commands">
+
+        <action android:id="@+id/action_commandsFragment_to_newCommandFragment"
+            app:destination="@+id/newCommandFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/newCommandFragment"
+        android:name="com.donkeymonkey.voiceCommands.view.addCommandsFragment.NewCommandFragment"
+        android:label="NewCommandFragment"
+        tools:layout="@layout/fragment_new_command_layout"/>
 </navigation>

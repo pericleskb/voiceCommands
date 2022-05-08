@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/selectImageTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:text="@string/select_image_description"
+            android:textSize="32sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/selectImageImageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/ic_select_image"
+            app:layout_constraintTop_toBottomOf="@+id/selectImageTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintWidth_percent="0.4"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/selectSoundTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="48dp"
+            android:text="@string/select_sound_description"
+            android:textSize="32sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/selectImageImageView"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/selectSoundButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/select_sound"
+            android:textSize="22sp"
+            app:layout_constraintTop_toBottomOf="@+id/selectSoundTitle"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/selectFileTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="24dp"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@+id/selectSoundButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/selectSoundButton"
+            app:layout_constraintTop_toBottomOf="@+id/selectSoundTitle"
+            tools:text="sound.mp3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

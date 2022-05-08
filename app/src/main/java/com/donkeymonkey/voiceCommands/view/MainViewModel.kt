@@ -19,12 +19,6 @@ class MainViewModel(context: Context?,
         return buttons
     }
 
-    fun addCommand() {
-        viewModelScope.launch(Dispatchers.IO) {
-            commandsRepository.addCommand(Command("test", "FFAAFF", R.raw.want, R.mipmap.eimai, 1))
-        }
-    }
-
     fun playSound(rawFileId: Int) {
         playSoundDelegate.playSound(rawFileId)
     }

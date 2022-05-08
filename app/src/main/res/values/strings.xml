@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Voice commands</string>
+    <string name="add_command">Add command</string>
+    <string name="select_image_description">Select an image file for the new command</string>
+    <string name="select_sound_description">Select a sound file for the new command</string>
+    <string name="select_sound">Choose file</string>
 </resources>

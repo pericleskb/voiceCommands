@@ -20,7 +20,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@mipmap/ic_launcher" />
+            tools:src="@mipmap/eimai" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.donkeymonkey.voiceCommands.uiComponents.SquareGridCardView>
