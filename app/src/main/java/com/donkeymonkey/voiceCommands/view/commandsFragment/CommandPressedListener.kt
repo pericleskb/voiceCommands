@@ -2,5 +2,5 @@ package com.donkeymonkey.voiceCommands.view.commandsFragment
 
 interface CommandPressedListener {
     fun addNewCommand()
-    fun playSound()
+    fun playSound(rawFileId: Int)
 }

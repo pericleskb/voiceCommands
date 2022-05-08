@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val viewModel: MainViewModel by viewModels {
             MainViewModelFactory(
+                baseContext,
                 CommandRepositoryImpl(VoiceCommandsDatabase.getDatabase(baseContext).commandDao())
             )
         }

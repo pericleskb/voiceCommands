@@ -3,52 +3,28 @@ package com.donkeymonkey.voiceCommands.view.commandsFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.donkeymonkey.voiceCommands.R
 import com.donkeymonkey.voiceCommands.databinding.LayoutCommandSquareBinding
 import com.donkeymonkey.voicecommandsdata.entities.Command
 
-class CommandsRecyclerViewAdapter(private val commandPressedAdapter: CommandPressedListener): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CommandsRecyclerViewAdapter(private val commandPressedListener: CommandPressedListener): RecyclerView.Adapter<CommandsRecyclerViewAdapter.CommandViewHolder>() {
 
     private val commandsList: ArrayList<Command> = ArrayList()
 
-    private val addButtonType = 0;
-    private val commandType = 1;
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        if (viewType == addButtonType) {
-            return AddButtonViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.layout_command_square, parent, false),
-                parent
-            )
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommandViewHolder {
         return CommandViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.layout_command_square, parent, false),
-            parent
+            LayoutInflater.from(parent.context).inflate(R.layout.layout_command_square, parent, false)
         )
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (holder) {
-            is AddButtonViewHolder -> {
-                holder.bind(commandPressedAdapter)
-            }
-            is CommandViewHolder -> {
-                holder.bind(commandsList[position])
-            }
-        }
+    override fun onBindViewHolder(holder: CommandViewHolder, position: Int) {
+        holder.bind(commandsList[position], commandPressedListener)
     }
 
     override fun getItemCount(): Int {
-        return commandsList.size + 1
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return if (commandsList.isEmpty() || position == commandsList.size) {
-            addButtonType
-        } else {
-            commandType
-        }
+        return commandsList.size
     }
 
     fun setButtons(commands: List<Command>) {
@@ -57,25 +33,12 @@ class CommandsRecyclerViewAdapter(private val commandPressedAdapter: CommandPres
         notifyDataSetChanged()
     }
 
-    fun addButton(command: Command) {
-        commandsList.add(command)
-        notifyItemChanged(commandsList.size -1)
-    }
-
-    class CommandViewHolder(view: View, private val parent: ViewGroup): RecyclerView.ViewHolder(view) {
+    class CommandViewHolder(view: View): RecyclerView.ViewHolder(view) {
         private val binding = LayoutCommandSquareBinding.bind(view)
 
-        fun bind(command: Command) {
-            binding.textView.text = command.name
-        }
-    }
-
-    class AddButtonViewHolder(view: View, private val parent: ViewGroup): RecyclerView.ViewHolder(view) {
-        private val binding = LayoutCommandSquareBinding.bind(view)
-
-        fun bind(commandPressedAdapter: CommandPressedListener) {
-            binding.textView.text = "+"
-            binding.root.setOnClickListener { commandPressedAdapter.addNewCommand() }
+        fun bind(command: Command, commandPressedListener: CommandPressedListener) {
+            binding.imageView.setImageDrawable(ResourcesCompat.getDrawable(itemView.resources, command.image, null))
+            binding.root.setOnClickListener { commandPressedListener.playSound(command.voiceCommand) }
         }
     }
 }

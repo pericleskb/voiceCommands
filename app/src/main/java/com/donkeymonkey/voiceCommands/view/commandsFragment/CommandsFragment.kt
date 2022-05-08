@@ -20,6 +20,7 @@ class CommandsFragment: Fragment(), CommandPressedListener {
 
     private val mainViewModel: MainViewModel by activityViewModels {
         MainViewModelFactory(
+            activity?.baseContext,
             CommandRepositoryImpl(VoiceCommandsDatabase.getDatabase(requireActivity().baseContext).commandDao())
         )
     }
@@ -36,7 +37,7 @@ class CommandsFragment: Fragment(), CommandPressedListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val adapter = CommandsRecyclerViewAdapter(this)
-        binding.commandsRecyclerView.layoutManager = GridLayoutManager(context, 3)
+        binding.commandsRecyclerView.layoutManager = GridLayoutManager(context, 2)
         binding.commandsRecyclerView.adapter = adapter
         mainViewModel.getButtons().observe(viewLifecycleOwner) { list ->
             adapter.setButtons(list)
@@ -52,7 +53,7 @@ class CommandsFragment: Fragment(), CommandPressedListener {
         mainViewModel.addCommand()
     }
 
-    override fun playSound() {
-        TODO("Not yet implemented")
+    override fun playSound(rawFileId: Int) {
+        mainViewModel.playSound(rawFileId)
     }
 }
