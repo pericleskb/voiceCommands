@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Text Sizes -->
+    <dimen name="guideline_paragraph_text_size">22sp</dimen>
+    <dimen name="guideline_paragraph_text_size_small">18sp</dimen>
+    <dimen name="big_button_text_size">22sp</dimen>
+    <dimen name="small_button_text_size">18sp</dimen>
+
+    <!-- Paddings -->
+    <dimen name="big_button_padding">16dp</dimen>
+</resources>

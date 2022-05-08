@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.donkeymonkey.voiceCommands.databinding.FragmentNewCommandLayoutBinding
 import com.donkeymonkey.voiceCommands.view.MainViewModel
 
+//ToDo use different view model
 class NewCommandFragment: Fragment() {
     private var _binding: FragmentNewCommandLayoutBinding? = null
     private val binding get() = _binding!!
